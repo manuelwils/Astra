@@ -1,5 +1,7 @@
 ==How to use Astra==[simple guide]
 
+for issues, visit our Telegram group- telegram.me/Techmedies_Hub
+
 first you need to store accounts for scraping and adding purposes in manager.py
 So launch in terminal
 
