@@ -24,6 +24,7 @@
 # Features ♨️
 
 * No need of API Id and API hash- It requires only phone numbers
+* Adds 60 members on an average[Not sure about VoIP numbers]
 * Multi-session adding 
 * Adds members in high speed[Stable]
 * Adds to private/public groups
