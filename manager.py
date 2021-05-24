@@ -140,14 +140,15 @@ while True:
         f.close()
     elif a == 4:
         # thanks to github.com/th3unkn0n for the snippet below
-        print(f'{lg}[i] Checking for updates...')
+        print(f'\n{lg}[i] Checking for updates...')
         try:
-            version = requests.get('raw.githubusercontent.com/Cryptonian007/Astra/main/version.txt')
+            # https://raw.githubusercontent.com/Cryptonian007/Astra/main/version.txt
+            version = requests.get('https://raw.githubusercontent.com/Cryptonian007/Astra/main/version.txt')
         except:
             print(f'{r} You are not connected to the internet')
             print(f'{r} Please connect to the internet and retry')
             exit()
-        if int(version) > 1:
+        if float(version.text) > 1.0:
             prompt = str(input(f'{lg}[~] Update available[Version {version}]. Download?[y/n]: {r}'))
             if prompt == 'y' or prompt == 'yes' or prompt == 'Y':
                 print(f'{lg}[i] Downloading updates...')
@@ -164,8 +165,11 @@ while True:
                 input('Press enter to exit...')
                 exit()
             else:
-                print(f'{lg}[i] Your Astra is already up to date')
+                print(f'{lg}[!] Update aborted.')
                 input('Press enter to goto main menu...')
+        else:
+            print(f'{lg}[i] Your Astra is already up to date')
+            input('Press enter to goto main menu...')
     elif a == 5:
         clr()
         banner()

@@ -78,23 +78,20 @@ while True:
 print('\n' + info + lg + ' Checking for banned accounts...' + rs)
 for a in accounts:
     phn = a[0]
-    clnt = TelegramClient(f'sessions/{phn}', 3910389 , '86f861352f0ab76a251866059a6adbd6')
+    print(f'{plus}{grey} Checking {lg}{phn}')
+    clnt = TelegramClient(f'sessions/{phn}', 3910389, '86f861352f0ab76a251866059a6adbd6')
     clnt.connect()
     banned = []
     if not clnt.is_user_authorized():
         try:
             clnt.send_code_request(phn)
-            code = input(f'{INPUT}{lg} Enter code for {w}{phn}{cy}[s to skip]:{r}')
-            if 's' in code:
-                accounts.remove(a)
-            else:
-                clnt.sign_in(phn, code)
+            print('OK')
         except PhoneNumberBannedError:
-            print(f'{error}{w}{phn} {r}is banned!{rs}')
+            print(f'{error} {w}{phn} {r}is banned!{rs}')
             banned.append(a)
     for z in banned:
         accounts.remove(z)
-        print(info+lg+'Banned account removed'+rs)
+        print(info+lg+' Banned account removed[Remove permanently using manager.py]'+rs)
     time.sleep(0.5)
     clnt.disconnect()
 
@@ -168,7 +165,7 @@ with open('vars.txt', 'wb') as f:
 sleep_time = int(input(f'{INPUT}{cy} Enter delay time per request{w}[{lg}0 for None{w}]: {r}'))
 #print(f'{info}{lg} Joining group from {w}{number_of_accs} accounts...')
 #print(f'{grey}-'*50)
-print(f'{success}{lg}-- Adding members from {w}{len(to_use)}{lg} accounts --')
+print(f'{success}{lg} -- Adding members from {w}{len(to_use)}{lg} account(s) --')
 adding_status = 0
 approx_members_count = 0
 for acc in to_use:
@@ -223,13 +220,16 @@ for acc in to_use:
         continue
     print(f'{info}{lg} Start: {w}{index}')
     #adding_status = 0
+    peer_flood_status = 0
     for user in members[index:stop]:
         index += 1
+        if peer_flood_status == 10:
+            print(f'{error}{r} Too many Peer Flood Errors! Closing session...')
+            break
         try:
             if status_choice == 'y':
                 if not user.status == UserStatusRecently():
                     continue
-            else: pass 
             #added_users.append(user)
             #user_to_add = c.get_entity(user['id'])
             if choice == 0:
@@ -241,18 +241,15 @@ for acc in to_use:
             print(f'{plus}{grey} User: {cy}{acc_name}{lg} -- {cy}{user_id} {lg}--> {cy}{target_title}')
             #print(f'{info}{grey} User: {cy}{acc_name}{lg} -- Sleep 1 second')
             adding_status += 1
-            #time.sleep(1)
-            if sleep_time == 0:
-                pass
-            else:
-                print(f'{info}{grey} User: {cy}{acc_name}{lg} -- Sleep {w}{sleep_time} {lg}second')
-                time.sleep(sleep_time)
+            print(f'{info}{grey} User: {cy}{acc_name}{lg} -- Sleep {w}{sleep_time} {lg}second(s)')
+            time.sleep(sleep_time)
         except UserPrivacyRestrictedError:
             print(f'{minus}{grey} User: {cy}{acc_name}{lg} -- {r}User Privacy Restricted Error')
             continue
         except PeerFloodError:
-            print(f'{error}{grey} User: {cy}{acc_name}{lg} -- {r}Peer Flood Error. Closing session')
-            break
+            print(f'{error}{grey} User: {cy}{acc_name}{lg} -- {r}Peer Flood Error.')
+            peer_flood_status += 1
+            continue
         except ChatWriteForbiddenError:
             print(f'{error}{r} Can\'t add to group. Contact group admin to enable members adding')
             if index < approx_members_count:
@@ -267,6 +264,9 @@ for acc in to_use:
         except UserAlreadyParticipantError:
             print(f'{minus}{grey} User: {cy}{acc_name}{lg} -- {r}User is already a participant')
             continue
+        except FloodWaitError as e:
+            print(f'{error}{r} {e}')
+            break
         except ValueError:
             print(f'{error}{r} Error in Entity')
             continue
