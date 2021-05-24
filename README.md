@@ -1,9 +1,9 @@
 # Astra 1.0
 <p align='center'><b>Cross Platform Telegram Members Scraping and Adding Toolkit[Stable]</b></p>
 
-# Warning ⚠️
+# Notice 📣
 
-<p align='center'><b> This is an stable version. Report for any errors in our <a href='https://telegram.me/Techmedies_Hub'> Telegram Group </a>
+<p align='center'><b> This is a stable version. Report for any errors in our <a href='https://telegram.me/Techmedies_Hub'> Telegram Group </a>
   </p>
 
 # Recent Issue that has been fixed 🔥
