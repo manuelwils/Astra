@@ -162,7 +162,7 @@ while True:
                 #os.system('del scraper.py')
                 os.system('curl -l -O https://raw.githubusercontent.com/Cryptonian007/Astra/main/add.py')
                 os.system('curl -l -O https://raw.githubusercontent.com/Cryptonian007/Astra/main/manager.py')
-                print(f'{lg}[*] Updated to version: {version}')
+                print(f'{lg}[*] Updated to version: {version.text}')
                 input('Press enter to exit...')
                 exit()
             else:
