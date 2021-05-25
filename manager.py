@@ -67,6 +67,7 @@ while True:
                 c = TelegramClient(f'sessions/{number}', 3910389 , '86f861352f0ab76a251866059a6adbd6')
                 c.start(number)
                 print(f'{lg}[+] Login successful')
+                c.disconnect()
             input(f'\n Press enter to goto main menu...')
 
         g.close()
