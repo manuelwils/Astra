@@ -149,8 +149,8 @@ while True:
             print(f'{r} You are not connected to the internet')
             print(f'{r} Please connect to the internet and retry')
             exit()
-        if float(version.text) > 1.0:
-            prompt = str(input(f'{lg}[~] Update available[Version {version}]. Download?[y/n]: {r}'))
+        if float(version.text) > 1.1:
+            prompt = str(input(f'{lg}[~] Update available[Version {version.text}]. Download?[y/n]: {r}'))
             if prompt == 'y' or prompt == 'yes' or prompt == 'Y':
                 print(f'{lg}[i] Downloading updates...')
                 if os.name == 'nt':
