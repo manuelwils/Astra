@@ -50,7 +50,11 @@ Then choose whether to add to public group or to a private group
 Then enter group link and proceed
 
 Choose whether to add active users or not[LastSeenRecently]
-
+===Notice===
+If you choose to add active members, Astra may add only a few members because it
+Skips members that aren't active. If you choose not to add active members but to add all
+Then Astra will add about 60 members
+============
 Then you need to enter delay time per request
 
 What is it?
