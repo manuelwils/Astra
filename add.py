@@ -55,7 +55,8 @@ def banner():
     for char in b:
         print(f'{random.choice(colors)}{char}{rs}')
     #print('=============SON OF GENISYS==============')
-    print(f'{lg}   Version: {w}1.0{lg} | Author: {w}Cryptonian{rs}\n')
+    print(f'{lg}   Version: {w}1.0{lg} | Author: {w}Ryan Lincoln{rs}\n')
+    print('    WhatsApp | +1(865)505-8313\n')
 
 
 # function to clear screen
